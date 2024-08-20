@@ -4,4 +4,6 @@ import fr.eulbobo.dojo.gameoflife.domain.Position;
 
 public interface CellDisplay {
     void alive(Position position);
+
+    void dead(Position position);
 }

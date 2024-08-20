@@ -34,6 +34,37 @@ public class GameOfLifeTest {
         ArgumentCaptor<Position> captor = ArgumentCaptor.forClass(Position.class);
         CellDisplay displayer = mock(CellDisplay.class);
 
+        GameOfLife gameOfLife = GameOfLife.from(aliveAndDeadCells());
+        gameOfLife.displayTo(displayer);
+
+        Mockito.verify(displayer, times(2)).alive(captor.capture());
+        Assertions.assertThat(captor.getAllValues())
+                .containsAll(Set.of(
+                        new Position(1, 1),
+                        new Position(1, 0))
+                );
+
+        Mockito.verify(displayer, times(2)).dead(captor.capture());
+        Assertions.assertThat(captor.getAllValues())
+                .containsAll(Set.of(
+                        new Position(1, 1),
+                        new Position(1, 0))
+                );
+    }
+
+    private CellGenerator aliveAndDeadCells() {
+        return () -> Set.of(
+                InnerCellData.alive(1, 1),
+                InnerCellData.alive(1, 0),
+                InnerCellData.dead(0, 1),
+                InnerCellData.dead(0, 0));
+    }
+
+    @Test
+    void should_output_alive_and_dead_cells_to_displayer() {
+        ArgumentCaptor<Position> captor = ArgumentCaptor.forClass(Position.class);
+        CellDisplay displayer = mock(CellDisplay.class);
+
         GameOfLife gameOfLife = GameOfLife.from(manyAliveCellsGenerator());
         gameOfLife.displayTo(displayer);
 
@@ -69,6 +100,10 @@ public class GameOfLifeTest {
 
         public static InnerCellData alive(int x, int y) {
             return new InnerCellData(true, x, y);
+        }
+
+        public static InnerCellData dead(int x, int y) {
+            return new InnerCellData(false, x, y);
         }
 
         @Override
