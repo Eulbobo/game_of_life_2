@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class StringCellDisplayTest {
 
     @Test
-    public void should_display_one_alive_cell() {
+    void should_display_one_alive_cell() {
         StringCellDisplay stringCellDisplay = new StringCellDisplay('0', '.');
 
         stringCellDisplay.alive(new Position(0, 0));
@@ -21,7 +21,7 @@ class StringCellDisplayTest {
     }
 
     @Test
-    public void should_display_one_dead_cell() {
+    void should_display_one_dead_cell() {
         StringCellDisplay stringCellDisplay = new StringCellDisplay('0', '.');
 
         stringCellDisplay.dead(new Position(0, 0));
@@ -35,7 +35,7 @@ class StringCellDisplayTest {
     }
 
     @Test
-    public void should_display_cells_correctly() {
+    void should_display_cells_correctly() {
         StringCellDisplay stringCellDisplay = new StringCellDisplay('0', '.');
 
         // une cellule sur 2 vivante

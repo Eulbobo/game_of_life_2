@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-public class GameOfLifeTest {
+class GameOfLifeTest {
 
     @Test
     void should_output_cells_to_displayer() {

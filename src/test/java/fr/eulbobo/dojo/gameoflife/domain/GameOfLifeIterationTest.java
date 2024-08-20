@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-public class GameOfLifeIterationTest {
+class GameOfLifeIterationTest {
 
     @Test
     void should_go_to_next_iteration() {
