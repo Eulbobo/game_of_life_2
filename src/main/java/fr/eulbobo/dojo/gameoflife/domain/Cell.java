@@ -30,7 +30,7 @@ public class Cell {
         }
     }
 
-    public void hasAliveNeighbours(int aliveNeighbours) {
+    public void hasAliveNeighbours(long aliveNeighbours) {
         if (aliveNeighbours < 2 || aliveNeighbours > 3) {
             cellStatus = CellStatus.DEAD;
         }

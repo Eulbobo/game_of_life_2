@@ -1,7 +1,6 @@
 package fr.eulbobo.dojo.gameoflife.domain;
 
 import fr.eulbobo.dojo.gameoflife.domain.display.CellDisplay;
-import fr.eulbobo.dojo.gameoflife.domain.generator.CellData;
 import fr.eulbobo.dojo.gameoflife.domain.generator.CellGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class GameOfLifeTest {
     }
 
     private CellGenerator singleAliveCellGenerator(int x, int y) {
-        return () -> Set.of(InnerCellData.alive(x, y));
+        return () -> Set.of(CellDataFixture.alive(x, y));
     }
 
     @Test
@@ -54,10 +53,10 @@ public class GameOfLifeTest {
 
     private CellGenerator aliveAndDeadCells() {
         return () -> Set.of(
-                InnerCellData.alive(1, 1),
-                InnerCellData.alive(1, 0),
-                InnerCellData.dead(0, 1),
-                InnerCellData.dead(0, 0));
+                CellDataFixture.alive(1, 1),
+                CellDataFixture.alive(1, 0),
+                CellDataFixture.dead(0, 1),
+                CellDataFixture.dead(0, 0));
     }
 
     @Test
@@ -81,39 +80,9 @@ public class GameOfLifeTest {
 
     private CellGenerator manyAliveCellsGenerator() {
         return () -> Set.of(
-                InnerCellData.alive(1, 1),
-                InnerCellData.alive(1, 0),
-                InnerCellData.alive(0, 1),
-                InnerCellData.alive(0, 0));
-    }
-
-    private static class InnerCellData implements CellData {
-        private final boolean alive;
-        private final int x;
-        private final int y;
-
-        public InnerCellData(boolean alive, int x, int y) {
-            this.alive = alive;
-            this.x = x;
-            this.y = y;
-        }
-
-        public static InnerCellData alive(int x, int y) {
-            return new InnerCellData(true, x, y);
-        }
-
-        public static InnerCellData dead(int x, int y) {
-            return new InnerCellData(false, x, y);
-        }
-
-        @Override
-        public Position getPosition() {
-            return new Position(x, y);
-        }
-
-        @Override
-        public boolean isAlive() {
-            return alive;
-        }
+                CellDataFixture.alive(1, 1),
+                CellDataFixture.alive(1, 0),
+                CellDataFixture.alive(0, 1),
+                CellDataFixture.alive(0, 0));
     }
 }
