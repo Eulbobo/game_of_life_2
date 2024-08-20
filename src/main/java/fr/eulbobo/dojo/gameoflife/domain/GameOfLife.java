@@ -6,7 +6,6 @@ import fr.eulbobo.dojo.gameoflife.domain.generator.CellGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class GameOfLife {
 
     Map<Position, Cell> cells;
