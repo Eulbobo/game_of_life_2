@@ -17,19 +17,11 @@ public class GameOfLife {
 
     public static GameOfLife from(CellGenerator cellGenerator) {
         Map<Position, Cell> allCells = new HashMap<>();
-        cellGenerator.allCells().forEach(cellData -> {
-            allCells.put(cellData.getPosition(), cellData.isAlive() ? Cell.aliveCell() : Cell.deadCell());
-        });
+        cellGenerator.allCells().forEach(cellData -> allCells.put(cellData.getPosition(), cellData.isAlive() ? Cell.aliveCell() : Cell.deadCell()));
         return new GameOfLife(allCells);
     }
 
     public void displayTo(CellDisplay displayer) {
-        cells.forEach((position, cell) -> {
-            if (Cell.isAlive(cell)) {
-                displayer.alive(position);
-            } else {
-                displayer.dead(position);
-            }
-        });
+        cells.forEach((position, cell) -> cell.ifAliveOrElse(() -> displayer.alive(position), () -> displayer.dead(position)));
     }
 }
