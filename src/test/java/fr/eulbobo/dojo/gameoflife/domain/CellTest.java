@@ -7,23 +7,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static fr.eulbobo.dojo.gameoflife.domain.CellStatus.ALIVE;
-import static fr.eulbobo.dojo.gameoflife.domain.CellStatus.DEAD;
-
 public class CellTest {
-
-    private static Cell aliveCell(){
-        return new Cell(ALIVE);
-    }
-
-    private static Cell deadCell(){
-        return new Cell(DEAD);
-    }
 
     @ParameterizedTest
     @MethodSource("sourceAliveCell")
     void alive_cell_should_live_or_die_given_circumstances(int aliveNeighbours, boolean alive) {
-        Cell cell = new Cell(ALIVE);
+        Cell cell = Cell.aliveCell();
         cell.hasAliveNeighbours(aliveNeighbours);
 
         Assertions.assertThat(Cell.isAlive(cell)).isEqualTo(alive);
@@ -41,7 +30,7 @@ public class CellTest {
     @ParameterizedTest
     @MethodSource("sourceDeadCell")
     void dead_cell_should_live_or_die_given_circumstances(int aliveNeighbours, boolean alive) {
-        Cell cell = new Cell(DEAD);
+        Cell cell = Cell.deadCell();
         cell.hasAliveNeighbours(aliveNeighbours);
 
         Assertions.assertThat(Cell.isAlive(cell)).isEqualTo(alive);
@@ -55,6 +44,4 @@ public class CellTest {
                 Arguments.of(4, false),
                 Arguments.of(5, false));
     }
-
-
 }

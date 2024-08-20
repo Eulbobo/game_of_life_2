@@ -1,8 +1,20 @@
 package fr.eulbobo.dojo.gameoflife.domain;
 
-class Cell {
+import static fr.eulbobo.dojo.gameoflife.domain.CellStatus.ALIVE;
+import static fr.eulbobo.dojo.gameoflife.domain.CellStatus.DEAD;
+
+public class Cell {
     private CellStatus cellStatus;
-    public Cell(CellStatus cellStatus) {
+
+    public static Cell aliveCell() {
+        return new Cell(ALIVE);
+    }
+
+    public static Cell deadCell() {
+        return new Cell(DEAD);
+    }
+
+    private Cell(CellStatus cellStatus) {
         this.cellStatus = cellStatus;
     }
 
